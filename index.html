@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para ti, en tus 27</title>
+<meta name="description" content="Un álbum de abril a octubre, hecho para tu cumpleaños.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: una sola noche a la luz de una vela. Sobre lacrado → carta → contador → álbum por meses (polaroids) → lo que no siempre digo → pastel con deseo. */
+:root{
+  color-scheme: dark;
+  --night:#170a0e;      /* fondo vino casi negro */
+  --wine:#2b1118;       /* superficies */
+  --wine-2:#3d1822;
+  --rose:#e9a3ac;       /* acento romántico */
+  --rose-deep:#b8515f;
+  --candle:#f0c477;     /* luz de vela */
+  --paper:#f7ebe4;      /* papel de carta y polaroid */
+  --ink:#3a1720;        /* tinta sobre papel */
+  --ink-soft:#7a4f57;
+  --fg:#f3e3df;
+  --fg-soft:#c9aeb0;
+  --display:"Gloock", "Didot", "Bodoni 72", Georgia, serif;
+  --body:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --hand:"Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--night); color:var(--fg);
+  font-family:var(--body); font-size:1.125rem; line-height:1.65;
+  padding-left:var(--gutter-l); padding-right:var(--gutter-r);
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(1200px 700px at 50% -10%, rgba(240,196,119,.13), transparent 60%),
+    radial-gradient(900px 600px at 100% 40%, rgba(184,81,95,.12), transparent 60%),
+    radial-gradient(900px 600px at 0% 80%, rgba(184,81,95,.10), transparent 60%);
+  background-attachment:fixed;
+}
+img{max-width:100%; display:block}
+button{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--candle); outline-offset:4px; border-radius:6px}
+#petals{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:0}
+main{position:relative; z-index:1; max-width:1100px; margin:0 auto}
+section{padding-block:clamp(56px, 10vw, 120px)}
+.eyebrow{font-family:var(--body); font-size:.8rem; letter-spacing:.24em; text-transform:uppercase; color:var(--candle)}
+h1,h2{font-family:var(--display); font-weight:400; text-wrap:balance; margin:0; line-height:1.02}
+h2{font-size:clamp(2.2rem, 6vw, 3.8rem)}
+h2 em{font-style:normal; color:var(--rose)}
+.lede{color:var(--fg-soft); max-width:52ch}
+
+/* ---------- Hero ---------- */
+.hero{display:grid; gap:40px; justify-items:center; text-align:center; padding-block:clamp(64px,12vw,140px) 40px}
+.hero h1{font-size:clamp(3.4rem, 13vw, 9rem); letter-spacing:-.01em}
+.hero h1 .num{display:inline-block; color:var(--candle); text-shadow:0 0 40px rgba(240,196,119,.45)}
+.hero .sub{font-family:var(--hand); font-size:clamp(1.6rem,4vw,2.2rem); color:var(--rose); margin:0; line-height:1.2}
+
+.envelope{
+  position:relative; width:min(360px, 86vw); aspect-ratio:3/2; max-width:100%;
+  border:0; padding:0; background:transparent; cursor:pointer; perspective:900px;
+}
+.envelope .body{position:absolute; inset:0; background:linear-gradient(160deg,#ead7cf,#d9bdb3); border-radius:6px; box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.envelope .body::before,.envelope .body::after{content:""; position:absolute; bottom:0; width:50%; height:100%; background:linear-gradient(160deg,#e3cbc1,#cfaea3)}
+.envelope .body::before{left:0; clip-path:polygon(0 0,100% 100%,0 100%)}
+.envelope .body::after{right:0; clip-path:polygon(100% 0,100% 100%,0 100%)}
+.envelope .flap{position:absolute; inset:0 0 auto; height:62%; background:linear-gradient(180deg,#d4b3a8,#c8a196); clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:top; transition:transform .9s cubic-bezier(.6,.05,.3,1); z-index:3}
+.envelope .seal{
+  position:absolute; left:50%; top:62%; transform:translate(-50%,-50%); z-index:4;
+  width:76px; height:76px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #d0606e, #8e2635 70%);
+  box-shadow:inset 0 -4px 8px rgba(0,0,0,.35), 0 6px 14px rgba(0,0,0,.4);
+  display:grid; place-items:center; font-family:var(--display); color:#f6d7d2; font-size:1.05rem; line-height:1;
+  transition:transform .5s, opacity .5s;
+}
+.envelope .seal small{display:block; font-family:var(--body); font-size:.6rem; letter-spacing:.2em; margin-top:3px}
+.envelope .hint{position:absolute; left:0; right:0; bottom:-44px; font-family:var(--hand); font-size:1.4rem; color:var(--fg-soft)}
+.envelope:hover .seal{transform:translate(-50%,-50%) scale(1.06) rotate(-6deg)}
+.envelope.open .flap{transform:rotateX(180deg); z-index:1}
+.envelope.open .seal{opacity:0; transform:translate(-50%,-30%) scale(.6)}
+.envelope.open .hint{opacity:0}
+
+/* ---------- Carta ---------- */
+.letter-wrap{display:grid; justify-items:center}
+.letter{
+  position:relative; width:100%; max-width:680px; background:var(--paper); color:var(--ink);
+  padding:clamp(28px,6vw,64px); border-radius:4px;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.04);
+  background-image:repeating-linear-gradient(transparent 0 33px, rgba(58,23,32,.07) 33px 34px);
+  background-position:0 18px;
+  overflow:hidden; transition:max-height 1.2s cubic-bezier(.4,.1,.2,1);
+}
+.letter.folded{max-height:360px}
+.letter.folded::after{content:""; position:absolute; inset:auto 0 0; height:170px; background:linear-gradient(transparent, var(--paper) 70%)}
+.letter .date{font-family:var(--hand); font-size:1.5rem; color:var(--ink-soft); text-align:right; margin:0 0 8px}
+.letter .greet{font-family:var(--display); font-size:clamp(1.8rem,5vw,2.4rem); margin:0 0 18px}
+.letter p{margin:0 0 1.05em; font-size:1.15rem; line-height:1.85}
+.letter .first::first-letter{font-family:var(--display); float:left; font-size:3.6em; line-height:.8; padding:6px 10px 0 0; color:var(--rose-deep)}
+.letter .sign{font-family:var(--hand); font-size:2rem; color:var(--rose-deep); margin-top:24px; line-height:1.1}
+.read-more{
+  margin-top:-28px; position:relative; z-index:2; border:1px solid rgba(240,196,119,.5); background:var(--wine);
+  padding:10px 22px; border-radius:999px; cursor:pointer; color:var(--candle); letter-spacing:.08em; font-size:.95rem;
+}
+.read-more:hover{background:var(--wine-2)}
+
+/* ---------- Contador ---------- */
+.counter{display:grid; gap:28px; text-align:center; justify-items:center}
+.ticks{display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(20px,5vw,64px)}
+.tick{display:grid; gap:4px; min-width:0}
+.tick b{font-family:var(--display); font-weight:400; font-size:clamp(2.8rem,9vw,5.4rem); line-height:1; color:var(--fg); font-variant-numeric:tabular-nums}
+.tick span{font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:var(--fg-soft)}
+.counter .note{font-family:var(--hand); font-size:1.6rem; color:var(--rose); max-width:34ch; line-height:1.3; margin:0}
+
+/* ---------- Álbum ---------- */
+.album-head{display:grid; gap:14px; margin-bottom:40px}
+.month{display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr); gap:clamp(20px,4vw,48px); padding-block:36px; border-top:1px solid rgba(233,163,172,.18)}
+.month header{position:sticky; top:24px; align-self:start}
+.month h3{font-family:var(--display); font-weight:400; font-size:clamp(2rem,4vw,2.8rem); margin:0; line-height:1}
+.month header p{margin:6px 0 0; color:var(--fg-soft); font-size:.95rem}
+.month header .count{font-family:var(--hand); color:var(--candle); font-size:1.3rem}
+.grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(220px,100%),1fr)); gap:clamp(22px,3vw,34px)}
+.polaroid{
+  --r:0deg; border:0; text-align:left; cursor:pointer; background:var(--paper); color:var(--ink);
+  padding:12px 12px 14px; border-radius:3px; transform:rotate(var(--r));
+  box-shadow:0 22px 40px -18px rgba(0,0,0,.8);
+  transition:transform .45s cubic-bezier(.3,.7,.3,1.2), box-shadow .45s;
+  display:grid; gap:10px; min-width:0; position:relative;
+}
+.polaroid::before{ /* cinta adhesiva */
+  content:""; position:absolute; top:-10px; left:50%; width:74px; height:22px; transform:translateX(-50%) rotate(-3deg);
+  background:rgba(240,196,119,.35); backdrop-filter:blur(1px);
+}
+.polaroid:hover,.polaroid:focus-visible{transform:rotate(0deg) translateY(-6px) scale(1.03); box-shadow:0 34px 60px -20px rgba(0,0,0,.9); z-index:2}
+.polaroid .ph{aspect-ratio:4/5; overflow:hidden; background:#ddd}
+.polaroid img{width:100%; height:100%; object-fit:cover; transition:transform .8s}
+.polaroid:hover img{transform:scale(1.05)}
+.polaroid .cap{font-family:var(--hand); font-size:1.3rem; line-height:1.15; color:var(--ink); min-height:2.3em}
+.polaroid .d{font-family:var(--body); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft)}
+
+/* ---------- Lightbox ---------- */
+.lightbox{position:fixed; inset:0; z-index:50; background:rgba(12,4,7,.92); display:grid; place-items:center;
+  padding:max(16px, env(safe-area-inset-top,0px)) var(--gutter-r) max(16px, env(safe-area-inset-bottom,0px)) var(--gutter-l)}
+.lightbox .card{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:0; max-width:1000px; width:100%; max-height:100%; background:var(--paper); color:var(--ink); border-radius:4px; overflow:hidden; box-shadow:0 40px 100px rgba(0,0,0,.7); animation:pop .45s cubic-bezier(.3,.7,.3,1.15)}
+@keyframes pop{from{opacity:0; transform:scale(.94) rotate(-1deg)}}
+.lightbox .pic{background:#120609; display:grid; place-items:center; min-height:0}
+.lightbox .pic img{max-height:82vh; width:auto; object-fit:contain}
+.lightbox .txt{padding:clamp(22px,4vw,44px); display:grid; align-content:center; gap:14px; min-width:0}
+.lightbox .txt .d{font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep)}
+.lightbox .txt p{font-family:var(--hand); font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.2; margin:0}
+.lightbox .txt .pos{font-size:.85rem; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+.lb-btn{position:absolute; border:1px solid rgba(240,196,119,.4); background:rgba(43,17,24,.85); color:var(--candle); width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.3rem; display:grid; place-items:center}
+.lb-btn:hover{background:var(--wine-2)}
+.lb-close{top:max(16px, calc(env(safe-area-inset-top,0px) + 12px)); right:max(16px, calc(env(safe-area-inset-right,0px) + 12px))}
+.lb-prev{left:max(12px, env(safe-area-inset-left,0px)); top:50%; transform:translateY(-50%)}
+.lb-next{right:max(12px, env(safe-area-inset-right,0px)); top:50%; transform:translateY(-50%)}
+
+/* ---------- Lo que no siempre digo ---------- */
+.truths{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px,100%),1fr)); gap:18px; margin-top:40px}
+.truth{perspective:1000px; border:0; padding:0; background:none; cursor:pointer; min-height:220px; text-align:left}
+.truth .in{position:relative; height:100%; min-height:220px; transition:transform .8s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d}
+.truth.flip .in{transform:rotateY(180deg)}
+.truth .f,.truth .b{position:absolute; inset:0; backface-visibility:hidden; border-radius:10px; padding:24px; display:grid; align-content:space-between}
+.truth .f{background:var(--wine); border:1px solid rgba(233,163,172,.22)}
+.truth .f h4{font-family:var(--display); font-weight:400; font-size:1.7rem; margin:0; line-height:1.1}
+.truth .f span{font-family:var(--hand); color:var(--candle); font-size:1.25rem}
+.truth .b{background:var(--paper); color:var(--ink); transform:rotateY(180deg); font-size:1.05rem; line-height:1.6}
+.truth .b p{margin:0}
+.truth .b span{font-family:var(--hand); color:var(--rose-deep); font-size:1.2rem}
+
+/* ---------- Pastel ---------- */
+.wish{display:grid; justify-items:center; text-align:center; gap:26px}
+.cake{position:relative; width:min(280px,80vw); aspect-ratio:1/1; max-width:100%; border:0; background:none; cursor:pointer; padding:0}
+.cake svg{width:100%; height:100%; overflow:visible}
+.flame{transform-origin:140px 92px; animation:flick 1.3s ease-in-out infinite alternate}
+@keyframes flick{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.04,.95) rotate(-1deg)}}
+.glow{transition:opacity .6s}
+.cake.out .flame,.cake.out .glow{opacity:0; transition:opacity .4s}
+.smoke{opacity:0}
+.cake.out .smoke{animation:smoke 2.4s ease-out forwards}
+@keyframes smoke{0%{opacity:.8; transform:translateY(0)}100%{opacity:0; transform:translateY(-60px) scale(1.6)}}
+.wish .prompt{font-family:var(--hand); font-size:1.6rem; color:var(--fg-soft); margin:0}
+.wish .final{max-width:560px; transition:opacity 1s, transform 1s}
+.wish .final[hidden]{display:none}
+.wish .final h2{margin-bottom:18px}
+.wish .final p{color:var(--fg-soft); margin:0 0 12px}
+.wish .final .sig{font-family:var(--hand); font-size:2.2rem; color:var(--rose)}
+
+footer{padding-block:40px 64px; text-align:center; color:var(--fg-soft); font-size:.9rem}
+footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:1.3rem}
+
+.reveal{opacity:1; transform:none}
+.js .reveal.pre{opacity:.001; transform:translateY(24px)}
+.reveal{transition:opacity .9s ease, transform .9s ease}
+
+@media (max-width:720px){
+  .month{grid-template-columns:minmax(0,1fr)}
+  .month header{position:static}
+  .lightbox .card{grid-template-columns:minmax(0,1fr); max-height:92vh; overflow:auto}
+  .lightbox .pic img{max-height:58vh}
+  .lb-prev,.lb-next{top:auto; bottom:max(16px, calc(env(safe-area-inset-bottom,0px) + 12px)); transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<canvas id="petals" aria-hidden="true"></canvas>
+<main>
+
+  <section class="hero" aria-labelledby="t">
+    <p class="eyebrow">27 de octubre de 2026</p>
+    <h1 id="t">Feliz <span class="num">27</span>,<br>mi amor</h1>
+    <p class="sub">tengo algo que decirte, ábrelo despacito</p>
+    <button class="envelope" id="env" aria-controls="letter" aria-expanded="false" aria-label="Abrir la carta">
+      <span class="body"></span>
+      <span class="flap"></span>
+      <span class="seal">27·X<small>PARA TI</small></span>
+      <span class="hint">toca el sello</span>
+    </button>
+  </section>
+
+  <section class="letter-wrap" aria-label="Carta">
+    <article class="letter folded" id="letter">
+      <p class="date">27 · octubre · 2026</p>
+      <p class="greet">Mi amor:</p>
+      <p class="first">Hoy cumples 27 y quise hacerte algo que pudieras guardar. No un regalo que se acaba, sino un lugar al que puedas volver cuando quieras acordarte de lo mucho que significas para mí.</p>
+      <p>Desde abril, cuando empezamos, me haces sentir especial de una forma que no sé explicar bien. Me haces reír, me retas, me miras como si yo valiera la pena. Contigo aprendí que lo bonito también está en lo pequeño: una foto mal tomada, una cara chistosa, un mensaje a media noche.</p>
+      <p>Y te quiero ser honesto, porque te lo mereces. A veces me siento muy solo. No porque no estés, sino porque el tiempo no nos alcanza. El trabajo, los pendientes, el cansancio, y de pronto pasan días en que casi no nos dedicamos nada. Te extraño incluso cuando estás cerca. No te lo digo como reclamo, te lo digo porque me importas y porque quiero que lo cuidemos juntos.</p>
+      <p>Quiero que sepas que vales muchísimo para mí. Más de lo que te digo y más de lo que demuestro. Atesoro cada momento contigo, hasta los más simples, y por eso guardé todas estas fotos: cada una es un pedacito de nosotros que no quiero olvidar.</p>
+      <p>En este nuevo año de tu vida te prometo buscar más tiempo para ti. Más tardes sin prisa, más pláticas largas, más fotos tontas. Que este sea el año en que nos regalemos lo que más nos falta: estar.</p>
+      <p>Feliz cumpleaños, mi vida. Gracias por existir y por elegirme.</p>
+      <p class="sign">Con todo mi amor,<br>Angelo</p>
+    </article>
+    <button class="read-more" id="readMore" aria-controls="letter" aria-expanded="false">Leer la carta completa</button>
+  </section>
+
+  <section class="counter reveal" aria-labelledby="ct">
+    <p class="eyebrow" id="ct">Desde nuestra primera foto · 3 de abril</p>
+    <div class="ticks">
+      <div class="tick"><b id="cDays">207</b><span>días</span></div>
+      <div class="tick"><b id="cHours">4,968</b><span>horas</span></div>
+      <div class="tick"><b>15</b><span>fotos guardadas</span></div>
+    </div>
+    <p class="note">y me sigue pareciendo poquito tiempo contigo</p>
+  </section>
+
+  <section id="album" aria-labelledby="at">
+    <div class="album-head reveal">
+      <p class="eyebrow">El álbum</p>
+      <h2 id="at">Abril a octubre, <em>contigo</em></h2>
+      <p class="lede">Toca cualquier foto para verla en grande. Puedes pasar de una a otra con las flechas.</p>
+    </div>
+    <div id="months"></div>
+  </section>
+
+  <section aria-labelledby="tt">
+    <div class="reveal">
+      <p class="eyebrow">Lo que no siempre te digo</p>
+      <h2 id="tt">Toca cada tarjeta</h2>
+    </div>
+    <div class="truths" id="truths"></div>
+  </section>
+
+  <section class="wish" aria-labelledby="wt">
+    <p class="eyebrow" id="wt">Un deseo</p>
+    <button class="cake" id="cake" aria-label="Apagar la vela y pedir un deseo">
+      <svg viewBox="0 0 280 280" aria-hidden="true">
+        <defs>
+          <radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f0c477" stop-opacity=".55"/><stop offset="1" stop-color="#f0c477" stop-opacity="0"/></radialGradient>
+          <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3d1"/><stop offset=".6" stop-color="#f0c477"/><stop offset="1" stop-color="#e0703c"/></linearGradient>
+        </defs>
+        <circle class="glow" cx="140" cy="80" r="80" fill="url(#g)"/>
+        <ellipse cx="140" cy="250" rx="120" ry="14" fill="#0d0507"/>
+        <rect x="40" y="170" width="200" height="74" rx="10" fill="#8e2635"/>
+        <path d="M40 186 q25 22 50 0 q25 22 50 0 q25 22 50 0 q25 22 50 0 v-6 a10 10 0 0 0 -10 -10 h-180 a10 10 0 0 0 -10 10z" fill="#f7ebe4"/>
+        <rect x="64" y="130" width="152" height="46" rx="8" fill="#b8515f"/>
+        <path d="M64 142 q19 16 38 0 q19 16 38 0 q19 16 38 0 q19 16 38 0 v-4 a8 8 0 0 0 -8 -8 h-136 a8 8 0 0 0 -8 8z" fill="#f7ebe4"/>
+        <rect x="134" y="96" width="12" height="36" rx="3" fill="#e9a3ac"/>
+        <path d="M134 104 l12 -6 M134 114 l12 -6 M134 124 l12 -6" stroke="#f7ebe4" stroke-width="2.5"/>
+        <path class="flame" d="M140 58 C150 72 152 84 140 92 C128 84 130 72 140 58Z" fill="url(#fl)"/>
+        <g class="smoke"><circle cx="140" cy="84" r="6" fill="#c9aeb0" opacity=".5"/><circle cx="146" cy="74" r="5" fill="#c9aeb0" opacity=".35"/></g>
+        <text x="140" y="222" text-anchor="middle" font-family="Gloock, Georgia, serif" font-size="30" fill="#f7ebe4">27</text>
+      </svg>
+    </button>
+    <p class="prompt" id="prompt">cierra los ojos, pide un deseo y sopla (toca la vela)</p>
+    <div class="final" id="final" hidden>
+      <h2>Mi deseo es <em>más tiempo</em> contigo</h2>
+      <p>Que dejemos de vernos de pasada. Que haya más noches de pijama rosa, más miradores, más fotos de cabeza y menos días sintiéndonos lejos.</p>
+      <p>Te quiero hoy, a tus 27, y en cada versión de ti que venga.</p>
+      <p class="sig">Feliz cumpleaños, mi amor</p>
+    </div>
+  </section>
+
+  <footer>Hecho a mano para ti · <b>abril – octubre 2026</b></footer>
+</main>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Foto anterior">‹</button>
+  <div class="card">
+    <div class="pic"><img id="lbImg" alt=""></div>
+    <div class="txt">
+      <span class="d" id="lbDate"></span>
+      <p id="lbCap"></p>
+      <span class="pos" id="lbPos"></span>
+    </div>
+  </div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Foto siguiente">›</button>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const photos=[
+ {f:'IMG-20260403-WA0025.jpg', d:'2026-04-03', c:'El sol de frente, tus rizos por todos lados y la lengüita de fuera. Aquí empezó todo, y yo ya sabía que estaba perdido.'},
+ {f:'IMG-20260403-WA0031.jpg', d:'2026-04-03', c:'Tu forma tan tuya de decirme “te quiero”. Nadie me reta como tú, y nadie me hace reír igual.'},
+ {f:'IMG-20260701-WA0000.jpg', d:'2026-07-01', c:'Las luces encima y esa mirada que me desarma, aunque me estés regañando.'},
+ {f:'IMG-20260701-WA0001.jpg', d:'2026-07-01', c:'Blusa blanca, aretes dorados y luz de tarde. Cuando te extraño, esta es la primera foto que abro.'},
+ {f:'IMG-20260701-WA0009.jpg', d:'2026-07-01', c:'En el mirador, con todo el pueblo a tus pies, y yo mirándote solo a ti.'},
+ {f:'IMG-20260701-WA0008.jpg', d:'2026-07-01', c:'Captura oficial de tu modo payasa. Hasta de cabeza eres mi persona favorita.'},
+ {f:'IMG-20260909-WA0013.jpg', d:'2026-09-09', c:'La cara de “esto está delicioso y no te voy a dar”. Quiero muchas más comidas contigo.'},
+ {f:'IMG-20260914-WA0024.jpg', d:'2026-09-14', c:'Cuando me miras así se me olvida todo lo demás.'},
+ {f:'IMG-20260914-WA0023.jpg', d:'2026-09-14', c:'La sonrisa traviesa de medianoche, esa que me habla sin palabras.'},
+ {f:'IMG-20260914-WA0022.jpg', d:'2026-09-14', c:'Ojos cerrados y cobija roja. De esas noches que quisiera que no se acabaran.'},
+ {f:'IMG-20260925-WA0007.jpg', d:'2026-09-25', c:'Lunares, rizos y luz cálida. Eres bonita hasta en una mesa cualquiera de la plaza.'},
+ {f:'WhatsApp Image 2026-10-06 at 3.10.56 PM.jpeg', d:'2026-10-06', c:'Ojos de plato y lengua fuera. Te amo también así. Sobre todo así.'},
+ {f:'WhatsApp Image 2026-10-20 at 8.57.29 PM.jpeg', d:'2026-10-20', c:'Media cara, cien por ciento tú. El corazoncito del collar no miente.'},
+ {f:'WhatsApp Image 2026-10-25 at 9.11.28 AM.jpeg', d:'2026-10-25', c:'Pucherito de mañana. Prometo hacerme perdonar con más tiempo y menos prisas.'},
+ {f:'WhatsApp Image 2026-10-25 at 8.09.02 PM.jpeg', d:'2026-10-25', c:'Dos días antes de tus 27. Pijama rosa y paz total. Así quiero que se sientan todos tus días.'}
+];
+const monthNotes={
+ 3:'donde empezó todo',
+ 6:'el verano de tus miradas',
+ 8:'noches de cobija roja',
+ 9:'el mes de tu cumpleaños'
+};
+const src=p=>'assets/'+encodeURIComponent(p.f);
+const fmt=d=>{const [y,m,dd]=d.split('-').map(Number);return dd+' de '+MESES[m-1]+' '+y};
+
+/* Álbum por meses */
+const monthsEl=document.getElementById('months');
+const groups={};
+photos.forEach((p,i)=>{const m=Number(p.d.slice(5,7))-1;(groups[m]=groups[m]||[]).push(i)});
+const rots=[-3,2.2,-1.4,3,-2.4,1.2];
+Object.keys(groups).map(Number).sort((a,b)=>a-b).forEach(m=>{
+  const sec=document.createElement('div');sec.className='month reveal';
+  const idx=groups[m];
+  sec.innerHTML=`<header><h3>${MESES[m][0].toUpperCase()+MESES[m].slice(1)}</h3><p>${monthNotes[m]||''}</p><span class="count">${idx.length} ${idx.length===1?'foto':'fotos'}</span></header><div class="grid"></div>`;
+  const g=sec.querySelector('.grid');
+  idx.forEach((i,k)=>{
+    const p=photos[i];const b=document.createElement('button');
+    b.className='polaroid';b.style.setProperty('--r',rots[(i+k)%rots.length]+'deg');
+    b.setAttribute('aria-label','Ver foto del '+fmt(p.d));
+    b.innerHTML=`<span class="ph"><img loading="lazy" src="${src(p)}" alt="Foto del ${fmt(p.d)}"></span><span class="cap">${p.c.split('. ')[0].replace(/\.$/,'')}…</span><span class="d">${fmt(p.d)}</span>`;
+    b.addEventListener('click',()=>openLb(i));
+    g.appendChild(b);
+  });
+  monthsEl.appendChild(sec);
+});
+
+/* Lightbox */
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+let cur=0,lastFocus=null;
+function show(i){cur=(i+photos.length)%photos.length;const p=photos[cur];
+  lbImg.src=src(p);lbImg.alt='Foto del '+fmt(p.d);
+  document.getElementById('lbDate').textContent=fmt(p.d);
+  document.getElementById('lbCap').textContent=p.c;
+  document.getElementById('lbPos').textContent=(cur+1)+' de '+photos.length;
+  const card=lb.querySelector('.card');card.style.animation='none';card.offsetHeight;card.style.animation='';
+}
+function openLb(i){lastFocus=document.activeElement;show(i);lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()}
+function closeLb(){lb.hidden=true;document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+document.getElementById('lbClose').onclick=closeLb;
+document.getElementById('lbPrev').onclick=()=>show(cur-1);
+document.getElementById('lbNext').onclick=()=>show(cur+1);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+document.addEventListener('keydown',e=>{if(lb.hidden)return;
+  if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1)});
+let tx=null;lb.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+lb.addEventListener('touchend',e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));tx=null});
+
+/* Carta */
+const env=document.getElementById('env'),letter=document.getElementById('letter'),rm=document.getElementById('readMore');
+function unfold(scroll){letter.style.maxHeight=letter.scrollHeight+'px';letter.classList.remove('folded');rm.hidden=true;
+  env.setAttribute('aria-expanded','true');rm.setAttribute('aria-expanded','true');
+  letter.addEventListener('transitionend',()=>{letter.style.maxHeight='none'},{once:true});
+  if(scroll)setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),650);}
+env.addEventListener('click',()=>{env.classList.add('open');burst(window.innerWidth/2,env.getBoundingClientRect().top+env.offsetHeight/2,24);unfold(true)});
+rm.addEventListener('click',()=>{env.classList.add('open');unfold(false)});
+
+/* Contador desde el 3 de abril de 2026 */
+const start=new Date(2026,3,3);
+function tickC(){const ms=Date.now()-start;const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5);
+  document.getElementById('cDays').textContent=d.toLocaleString('es-MX');
+  document.getElementById('cHours').textContent=h.toLocaleString('es-MX');}
+tickC();setInterval(tickC,60000);
+
+/* Tarjetas */
+const truths=[
+ ['Me haces sentir especial','Con una mirada, con un mensaje, con un “¿ya comiste?”. Contigo me siento visto.'],
+ ['A veces me siento solo','Cuando pasan días sin tiempo para nosotros, te extraño muchísimo. Quiero que lo cuidemos juntos.'],
+ ['Vales muchísimo para mí','Más de lo que te digo y más de lo que demuestro. Eres de lo más importante que tengo.'],
+ ['Atesoro cada momento','Hasta los más simples. Por eso guardé cada foto: no quiero olvidar ni uno.'],
+ ['Me encanta tu lado payaso','Tus caras, tu lengua de fuera, tus pucheros. Me enamora que seas tan tú conmigo.'],
+ ['Te prometo más tiempo','Más tardes sin prisa y más pláticas largas. Este año quiero estar más contigo.']
+];
+const tEl=document.getElementById('truths');
+truths.forEach(([h,t],i)=>{const b=document.createElement('button');b.className='truth reveal';b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<span class="in"><span class="f"><h4>${h}</h4><span>toca para leer</span></span><span class="b"><p>${t}</p><span>— tuyo</span></span></span>`;
+  b.onclick=()=>{b.classList.toggle('flip');b.setAttribute('aria-pressed',b.classList.contains('flip'))};tEl.appendChild(b)});
+
+/* Pastel */
+const cake=document.getElementById('cake');
+cake.addEventListener('click',()=>{if(cake.classList.contains('out'))return;cake.classList.add('out');
+  document.getElementById('prompt').textContent='deseo pedido ♡';
+  const r=cake.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height*.3,90);
+  setTimeout(()=>{const f=document.getElementById('final');f.hidden=false;f.scrollIntoView({behavior:'smooth',block:'center'})},900)});
+
+/* Aparición suave (estado de reposo visible) */
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'}):null;
+if(io&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('pre');io.observe(el)}});
+}
+
+/* Pétalos */
+const cv=document.getElementById('petals'),ctx=cv.getContext('2d');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W,H,DPR=Math.min(devicePixelRatio||1,2),petals=[];
+function size(){W=cv.width=innerWidth*DPR;H=cv.height=innerHeight*DPR}
+size();addEventListener('resize',size);
+const cols=['#e9a3ac','#b8515f','#f0c477','#f7ebe4'];
+function mk(x,y,burstMode){return{x:x??Math.random()*W,y:y??-20*DPR,s:(6+Math.random()*9)*DPR,
+  vx:burstMode?(Math.random()-.5)*9*DPR:(Math.random()-.5)*.4*DPR,vy:burstMode?(-Math.random()*8-2)*DPR:(.4+Math.random()*.8)*DPR,
+  a:Math.random()*6.28,va:(Math.random()-.5)*.05,c:cols[Math.random()*cols.length|0],life:burstMode?1:null,heart:burstMode&&Math.random()<.5}}
+for(let i=0;i<(reduce?0:26);i++){const p=mk();p.y=Math.random()*H;petals.push(p)}
+function burst(x,y,n){if(reduce)return;for(let i=0;i<n;i++)petals.push(mk(x*DPR,y*DPR,true))}
+function heart(s){ctx.beginPath();ctx.moveTo(0,s*.3);ctx.bezierCurveTo(0,-s*.2,-s,-s*.2,-s,s*.3);ctx.bezierCurveTo(-s,s*.8,0,s,0,s*1.3);ctx.bezierCurveTo(0,s,s,s*.8,s,s*.3);ctx.bezierCurveTo(s,-s*.2,0,-s*.2,0,s*.3);ctx.fill()}
+function frame(){ctx.clearRect(0,0,W,H);
+  petals.forEach(p=>{p.x+=p.vx+Math.sin(p.a)*.3*DPR;p.y+=p.vy;p.a+=p.va;
+    if(p.life!=null){p.vy+=.12*DPR;p.vx*=.99;p.life-=.006}
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.globalAlpha=p.life!=null?Math.max(p.life,0):.55;ctx.fillStyle=p.c;
+    if(p.heart)heart(p.s*.6);else{ctx.beginPath();ctx.ellipse(0,0,p.s,p.s*.55,0,0,6.28);ctx.fill()}
+    ctx.restore();
+    if(p.life==null&&p.y>H+20*DPR){p.y=-20*DPR;p.x=Math.random()*W}});
+  petals=petals.filter(p=>p.life==null||(p.life>0&&p.y<H+40*DPR));
+  requestAnimationFrame(frame)}
+if(!reduce)frame();
+</script>
+</body>
+</html>

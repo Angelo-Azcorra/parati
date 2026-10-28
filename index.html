@@ -192,8 +192,6 @@ h2 em{font-style:normal; color:var(--rose)}
 .wish .final p{color:var(--fg-soft); margin:0 0 12px}
 .wish .final .sig{font-family:var(--hand); font-size:2.2rem; color:var(--rose)}
 
-.closing{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px,100%),1fr)); gap:18px; max-width:640px; margin-inline:auto; padding-block:24px 0}
-.closing .note{margin:0; padding:24px; background:var(--wine); color:var(--fg); border:1px solid rgba(233,163,172,.22); border-radius:10px; display:grid; align-content:center; min-height:140px; font-family:var(--display); font-weight:400; font-size:1.5rem; line-height:1.15}
 footer{padding-block:40px 64px; text-align:center; color:var(--fg-soft); font-size:.9rem}
 footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:1.3rem}
 
@@ -300,11 +298,6 @@ footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:
       <p>Te quiero hoy, en tu cumpleaños, y en cada versión de ti que venga.</p>
       <p class="sig">Feliz cumpleaños, mi amor</p>
     </div>
-  </section>
-
-  <section class="closing reveal" aria-label="Para seguir juntos">
-    <p class="note">Sigamos remando juntos.</p>
-    <p class="note">Que no se acaben nuestros momentos juntos.</p>
   </section>
 
   <footer>Hecho a mano para ti · <b>abril – octubre 2026</b></footer>
@@ -423,7 +416,9 @@ const truths=[
  ['Vales muchísimo para mí','Más de lo que te digo y más de lo que demuestro. Eres de lo más importante que tengo.'],
  ['Atesoro cada momento','Hasta una llamada corta. No quiero olvidar ni uno.'],
  ['Me encanta tu lado payaso','Tus caras, tu lengua de fuera, tus pucheros. Me enamora que seas tan tú conmigo.'],
- ['Quiero menos distancia','Más llamadas largas, más fotos tontas y, algún día, ningún kilómetro entre los dos.']
+ ['Quiero menos distancia','Más llamadas largas, más fotos tontas y, algún día, ningún kilómetro entre los dos.'],
+ ['Sigamos remando juntos','Con calma o con tormenta, pero al mismo ritmo. Mientras vayamos en la misma barca, yo no pienso soltar el remo.'],
+ ['Que no se acaben nuestros momentos juntos','Cada llamada, cada risa y cada noche contigo. Quiero que sigan sumándose, uno tras otro, por mucho tiempo.']
 ];
 const tEl=document.getElementById('truths');
 truths.forEach(([h,t],i)=>{const b=document.createElement('button');b.className='truth reveal';b.setAttribute('aria-pressed','false');

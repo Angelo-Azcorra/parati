@@ -192,6 +192,8 @@ h2 em{font-style:normal; color:var(--rose)}
 .wish .final p{color:var(--fg-soft); margin:0 0 12px}
 .wish .final .sig{font-family:var(--hand); font-size:2.2rem; color:var(--rose)}
 
+#rest:not([hidden]){animation:restIn 1.2s ease both}
+@keyframes restIn{from{opacity:0}to{opacity:1}}
 footer{padding-block:40px 64px; text-align:center; color:var(--fg-soft); font-size:.9rem}
 footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:1.3rem}
 
@@ -242,6 +244,8 @@ footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:
     </article>
     <button class="read-more" id="readMore" aria-controls="letter" aria-expanded="false">Leer la carta completa</button>
   </section>
+
+<div id="rest" hidden>
 
   <section class="counter reveal" aria-labelledby="ct">
     <p class="eyebrow" id="ct">Desde que te conozco · 23 de diciembre de 2025</p>
@@ -301,6 +305,8 @@ footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:
   </section>
 
   <footer>Hecho a mano para ti · <b>abril – octubre 2026</b></footer>
+
+</div>
 </main>
 
 <div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto">
@@ -397,7 +403,7 @@ function unfold(scroll){letter.style.maxHeight=letter.scrollHeight+'px';letter.c
   if(scroll)setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),650);}
 /* Música de fondo: arranca con el primer toque (los navegadores bloquean el audio automático) */
 const bgm=document.getElementById('bgm');
-function playMusic(){bgm.volume=.6;bgm.play().catch(()=>{})}
+function playMusic(){bgm.volume=.6;bgm.play().catch(()=>{});document.getElementById('rest').hidden=false}
 env.addEventListener('click',()=>{playMusic();env.classList.add('open');burst(window.innerWidth/2,env.getBoundingClientRect().top+env.offsetHeight/2,24);unfold(true)});
 rm.addEventListener('click',()=>{playMusic();env.classList.add('open');unfold(false)});
 

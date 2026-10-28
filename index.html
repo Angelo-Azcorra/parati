@@ -317,6 +317,7 @@ footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:
   <button class="lb-btn lb-next" id="lbNext" aria-label="Foto siguiente">›</button>
 </div>
 
+<audio id="bgm" src="sound.mp3" loop preload="auto"></audio>
 <script>
 document.documentElement.classList.add('js');
 const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
@@ -394,8 +395,11 @@ function unfold(scroll){letter.style.maxHeight=letter.scrollHeight+'px';letter.c
   env.setAttribute('aria-expanded','true');rm.setAttribute('aria-expanded','true');
   letter.addEventListener('transitionend',()=>{letter.style.maxHeight='none'},{once:true});
   if(scroll)setTimeout(()=>letter.scrollIntoView({behavior:'smooth',block:'start'}),650);}
-env.addEventListener('click',()=>{env.classList.add('open');burst(window.innerWidth/2,env.getBoundingClientRect().top+env.offsetHeight/2,24);unfold(true)});
-rm.addEventListener('click',()=>{env.classList.add('open');unfold(false)});
+/* Música de fondo: arranca con el primer toque (los navegadores bloquean el audio automático) */
+const bgm=document.getElementById('bgm');
+function playMusic(){bgm.volume=.6;bgm.play().catch(()=>{})}
+env.addEventListener('click',()=>{playMusic();env.classList.add('open');burst(window.innerWidth/2,env.getBoundingClientRect().top+env.offsetHeight/2,24);unfold(true)});
+rm.addEventListener('click',()=>{playMusic();env.classList.add('open');unfold(false)});
 
 /* Contador desde el 23 de diciembre de 2025; pareja desde el 11 de abril de 2026 */
 const start=new Date(2025,11,23),us=new Date(2026,3,11);

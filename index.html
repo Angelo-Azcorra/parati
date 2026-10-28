@@ -192,6 +192,8 @@ h2 em{font-style:normal; color:var(--rose)}
 .wish .final p{color:var(--fg-soft); margin:0 0 12px}
 .wish .final .sig{font-family:var(--hand); font-size:2.2rem; color:var(--rose)}
 
+.closing{display:grid; grid-template-columns:repeat(auto-fit, minmax(min(240px,100%),1fr)); gap:18px; max-width:640px; margin-inline:auto; padding-block:24px 0}
+.closing .note{margin:0; padding:28px 24px; background:var(--paper); color:var(--ink); border-radius:10px; text-align:center; font-family:var(--hand); font-size:1.9rem; line-height:1.15; box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
 footer{padding-block:40px 64px; text-align:center; color:var(--fg-soft); font-size:.9rem}
 footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:1.3rem}
 
@@ -300,6 +302,11 @@ footer b{font-family:var(--hand); font-weight:500; color:var(--rose); font-size:
     </div>
   </section>
 
+  <section class="closing reveal" aria-label="Para seguir juntos">
+    <p class="note">Sigamos remando juntos.</p>
+    <p class="note">Que no se acaben nuestros momentos juntos.</p>
+  </section>
+
   <footer>Hecho a mano para ti · <b>abril – octubre 2026</b></footer>
 </main>
 
@@ -327,13 +334,13 @@ const photos=[
  {f:'IMG-20260701-WA0000.jpg', d:'2026-07-01', c:'Las luces encima y esa mirada que me desarma, aunque me estés regañando.'},
  {f:'IMG-20260701-WA0001.jpg', d:'2026-07-01', c:'Blusa blanca, aretes dorados y luz de tarde. Cuando te extraño, esta es la primera foto que abro.'},
  {f:'IMG-20260701-WA0009.jpg', d:'2026-07-01', c:'En el mirador, con todo el pueblo a tus pies, y yo mirándote solo a ti.'},
- {f:'IMG-20260701-WA0008.jpg', d:'2026-07-01', c:'Captura oficial de tu modo payasa. Hasta de cabeza eres mi persona favorita.'},
+ {f:'IMG-20260701-WA0008.jpg', d:'2026-07-01', c:'Coqueta linda. Hasta de cabeza eres mi persona favorita.'},
  {f:'IMG-20260909-WA0013.jpg', d:'2026-09-09', c:'La cara de “esto está delicioso y no te voy a dar”. Quiero muchas más comidas contigo.'},
  {f:'IMG-20260914-WA0024.jpg', d:'2026-09-14', c:'Cuando me miras así se me olvida todo lo demás.'},
  {f:'IMG-20260914-WA0023.jpg', d:'2026-09-14', c:'La sonrisa traviesa de medianoche, esa que me habla sin palabras.'},
- {f:'IMG-20260914-WA0022.jpg', d:'2026-09-14', c:'Ojos cerrados y cobija roja. De esas noches que quisiera que no se acabaran.'},
- {f:'IMG-20260925-WA0007.jpg', d:'2026-09-25', c:'Lunares, rizos y luz cálida. Eres bonita hasta en una mesa cualquiera de la plaza.'},
- {f:'WhatsApp Image 2026-10-06 at 3.10.56 PM.jpeg', d:'2026-10-06', c:'Ojos de plato y lengua fuera. Te amo también así. Sobre todo así.'},
+ {f:'IMG-20260914-WA0022.jpg', d:'2026-09-14', c:'Ojitos a punto de dormir. De esas noches que quisiera que no se acabaran.'},
+ {f:'IMG-20260925-WA0007.jpg', d:'2026-09-25', c:'Una mirada que enamora. Eres bonita hasta en una mesa cualquiera de la plaza.'},
+ {f:'WhatsApp Image 2026-10-06 at 3.10.56 PM.jpeg', d:'2026-10-06', c:'¡WTF! Jajaja. Te amo también así. Sobre todo así.'},
  {f:'WhatsApp Image 2026-10-20 at 8.57.29 PM.jpeg', d:'2026-10-20', c:'Media cara, cien por ciento tú. El corazoncito del collar no miente.'},
  {f:'WhatsApp Image 2026-10-25 at 9.11.28 AM.jpeg', d:'2026-10-25', c:'Pucherito de mañana. Lo que daría por estar ahí y sacártelo con un abrazo.'},
  {f:'WhatsApp Image 2026-10-25 at 8.09.02 PM.jpeg', d:'2026-10-25', c:'Dos días antes de tu cumpleaños. Pijama rosa y paz total. Así quiero que se sientan todos tus días.'}
